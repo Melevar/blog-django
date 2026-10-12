@@ -50,3 +50,9 @@ Abrir en el navegador: http://127.0.0.1:8000/
 ## Aplicaciones
 
 - **posts**: aplicación inicial para manejar las publicaciones del blog.
+## Panel de administración
+
+1. Aplicar migraciones: `python manage.py migrate`
+2. Crear superusuario: `python manage.py createsuperuser`
+3. Iniciar el servidor: `python manage.py runserver`
+4. Entrar a `http://127.0.0.1:8000/admin/` y cargar posts desde la sección Posts.

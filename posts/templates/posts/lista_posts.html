@@ -1,0 +1,16 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Posts | Mi Blog{% endblock %}
+
+{% block content %}
+    <h2>Listado de posts</h2>
+    {% for post in posts %}
+        <article>
+            <h3>{{ post.titulo }}</h3>
+            <p><small>Por {{ post.autor }} - {{ post.fecha_creacion|date:"d/m/Y" }}</small></p>
+            <p>{{ post.contenido }}</p>
+        </article>
+    {% empty %}
+        <p>Todavía no hay posts publicados.</p>
+    {% endfor %}
+{% endblock %}
