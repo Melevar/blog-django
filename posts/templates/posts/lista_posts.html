@@ -4,13 +4,24 @@
 
 {% block content %}
     <h2>Listado de posts</h2>
+    <p><a href="{% url 'crear_post' %}">Crear nuevo post</a></p>
+
     {% for post in posts %}
         <article>
-            <h3>{{ post.titulo }}</h3>
-            <p><small>Por {{ post.autor }} - {{ post.fecha_creacion|date:"d/m/Y" }}</small></p>
-            <p>{{ post.contenido }}</p>
+            {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" width="250">
+            {% endif %}
+            <h3>
+                {% if post.slug %}
+                    <a href="{% url 'detalle_post' post.slug %}">{{ post.titulo }}</a>
+                {% else %}
+                    {{ post.titulo }}
+                {% endif %}
+            </h3>
+            <p><small>Por {{ post.autor }} - {{ post.fecha_creacion|date:"d/m/Y" }} - {{ post.estado }}</small></p>
+            <p>{{ post.contenido|truncatewords:30 }}</p>
         </article>
     {% empty %}
-        <p>Todavía no hay posts publicados.</p>
+        <p>Todavía no hay posts.</p>
     {% endfor %}
 {% endblock %}
