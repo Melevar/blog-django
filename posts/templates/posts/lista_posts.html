@@ -4,7 +4,9 @@
 
 {% block content %}
     <h2>Listado de posts</h2>
+    {% if user.is_authenticated %}
     <p><a href="{% url 'crear_post' %}">Crear nuevo post</a></p>
+{% endif %}
 
     {% for post in posts %}
         <article>

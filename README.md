@@ -83,3 +83,13 @@ Se instaló **Pillow** (necesaria para `ImageField`): `pip install -r requiremen
 2. Iniciar el servidor: `python manage.py runserver`
 3. Entrar a `http://127.0.0.1:8000/posts/crear/`, completar el formulario y elegir una imagen.
 4. Abrir el detalle del post para ver la imagen.
+## Usuarios y perfiles
+
+- **Registro:** `/accounts/registro/` crea un usuario nuevo y su perfil.
+- **Iniciar sesión:** `/accounts/login/`.
+- **Cerrar sesión:** botón "Cerrar sesión" del menú (formulario POST).
+- **Perfil:** modelo `Perfil` (app `accounts`) con relación `OneToOneField` hacia `User`. Tiene `biografia`, `link_web` y `avatar`.
+- **Avatares:** se guardan en `media/avatares/` (`MEDIA_URL` y `MEDIA_ROOT` ya configurados).
+- **Ver y editar perfil:** `/accounts/perfil/` y `/accounts/perfil/editar/`.
+- **Vistas protegidas con `@login_required`:** crear, editar y eliminar posts, y ver o editar el perfil.
+- **Públicas:** listado y detalle de posts.

@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="{% static 'posts/css/estilos.css' %}">
 </head>
 <body>
-
-        <header>
-    <h1>Mi Blog</h1>
-    <nav>
-        <a href="{% url 'inicio' %}">Inicio</a>
-        <a href="{% url 'lista_posts' %}">Posts</a>
-        <a href="{% url 'acerca' %}">Acerca de</a>
-    </nav>
-</header>
-</nav>
+    <header>
+        <h1>Mi Blog</h1>
+        <nav>
             <a href="{% url 'inicio' %}">Inicio</a>
+            <a href="{% url 'lista_posts' %}">Posts</a>
             <a href="{% url 'acerca' %}">Acerca de</a>
+            {% if user.is_authenticated %}
+                <span>Hola, {{ user.username }}</span>
+                <a href="{% url 'perfil' %}">Mi perfil</a>
+                <a href="{% url 'crear_post' %}">Crear post</a>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Iniciar sesión</a>
+                <a href="{% url 'registro' %}">Registrarse</a>
+            {% endif %}
         </nav>
     </header>
 
